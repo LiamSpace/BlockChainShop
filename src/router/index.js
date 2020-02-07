@@ -5,6 +5,31 @@ Vue.use(Router)
 
 export default new Router({
     routes:[
+        {
+            path:'/',
+            name:'home',
+            component: () => import('@/view/HomePage/index')
+        },
+        {
+            path:'/login',
+            name:'login',
+            component: () => import('@/view/Login/index')
+        },
+        {
+            path:'/productCollection',
+            name:'productCollection',
+            component: () => import('@/view/ProductCollection/index')
+        },
+        {
+            path:'/shopNotice',
+            name:'shopNotice',
+            component: () => import('@/view/ShopNotice/index')
+        },
+        {
+            path:'/aboutUs',
+            name:'aboutUs',
+            component: () => import('@/view/AboutUs/index')
+        },
         // {
             //添加路由
             // path:'',

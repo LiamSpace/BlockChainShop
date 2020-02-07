@@ -1,0 +1,56 @@
+/*多分辨率设定rem设定*/
+
+html { font-size : 10px; }
+
+
+
+/*Note3*/
+
+@media only screen and (min-width: 360px) {
+
+  html { font-size: 12px !important; }
+
+}
+
+
+
+/*iPhone6*/
+
+@media only screen and (min-width: 376px) {
+
+  //html { font-size: 13px !important; }
+  html { font-size: 12px !important; }
+
+}
+
+
+
+/*iPhone6 plus*/
+
+@media only screen and (min-width: 414px) {
+
+  //html { font-size: 14px !important; }
+  html { font-size: 12px !important; }
+
+}
+
+
+
+/*big Resolution*/
+
+@media only screen and (min-width: 641px) {
+
+  //html { font-size: 15px !important; }
+  html { font-size: 12px !important; }
+
+}
+
+
+/*PC - Small*/
+
+@media only screen and (min-width: 1024px) {
+
+  //html { font-size: 15px !important; }
+  html { font-size: 14px !important; }
+
+}

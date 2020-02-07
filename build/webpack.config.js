@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const vueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const CopyWebpackPlugin = require('copy-webpack-plugin') 
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const currentMode =  process.argv.indexOf('--mode=production') === -1; //1 为 开发环境 -1为生产环境
 
 module.exports = {
@@ -78,23 +78,25 @@ module.exports = {
                 },'sass-loader']
             },
             {
-                test: /\.(jpe?g|png|gif)$/i, //图片文件
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/i, //图片文件
                 use: [
                     {
                         //url 转换成base64 ,超过限制使用file-loader
                         loader: 'url-loader',
                         options: {
-                        limit: 10240,
-                        fallback: {
-                                loader: 'file-loader',
-                                options: {
-                                    name: 'img/[name].[hash:8].[ext]'
-                                }
-                            }
+                            limit: 10240,
+                            fallback: {
+                                    loader: 'file-loader',
+                                    options: {
+                                        name: 'img/[name].[hash:8].[ext]'
+                                    }
+                                },
+                            //启用CommonJS模版语法
+                            esModule: false
                         },
                     }
                 ],
-                include:[path.resolve(__dirname,"../src/assets")],
+                include:[path.resolve(__dirname,"../src/assets/")],
                 exclude:/node_modules/
             },
             {
@@ -103,19 +105,33 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                        limit: 10240,
-                        fallback: {
-                                loader: 'file-loader',
-                                options: {
-                                name: 'media/[name].[hash:8].[ext]'
-                                }
-                            }
+                            limit: 10240,
+                            fallback: {
+                                    loader: 'file-loader',
+                                    options: {
+                                        name: 'media/[name].[hash:8].[ext]',
+                                    },
+                                },
                         },
+
                     }
                 ],
-                include:[path.resolve(__dirname,"../src/assets")],
+                include:[path.resolve(__dirname,"../src/assets/")],
                 exclude:/node_modules/
             },
+            // {
+            //     test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/, //媒体文件
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 name: 'media/[name].[hash:8].[ext]',
+            //             },
+            //         }
+            //     ],
+            //     include:[path.resolve(__dirname,"../src/assets/")],
+            //     exclude:/node_modules/
+            // },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i, // 字体
                 use: [
@@ -143,7 +159,7 @@ module.exports = {
             //         }
             //     },
             //     exclude:/node_modules/
-            // }
+            // },
             {
                 test:/\.js$/,
                 use:[{
@@ -151,7 +167,7 @@ module.exports = {
                     loader:'happypack/loader?id=happyBabel'
                 }],
                 exclude:/node_modules/
-            },
+            }
         ]
     },
     resolve:{
@@ -166,7 +182,7 @@ module.exports = {
     plugins:[
         // 拼接组装html,打包出来的文件插入模版
         new HtmlWebpackPlugin({
-            template:path.resolve(__dirname,'../index.html'),
+            template: path.resolve(__dirname,'../index.html'),
             filename:'index.html'
         }),
         //打包，清除一次dist目录
@@ -196,7 +212,14 @@ module.exports = {
         new CopyWebpackPlugin([{
             from:path.resolve(__dirname,"../static"),
             to:path.resolve(__dirname,"../dist/static")
-        }])
+        }]),
+        //全局配置第三方库
+        new Webpack.ProvidePlugin({
+            $:'jquery',
+            jQuery:'jquery',
+            jquery:'jquery',
+            anime:'animejs'
+        })
     ],
-    
+
 }

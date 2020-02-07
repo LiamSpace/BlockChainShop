@@ -1,6 +1,6 @@
 module.exports = {
     host:'localhost',
-    port:7087,
+    port:7088,
     proxyTable: {
         '/api': {
           target: 'https://douban.uieee.com/v2/movie', // 接口的域名
