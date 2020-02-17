@@ -53,16 +53,20 @@
                         text:'国潮时代，自己做主'
                     },
                     {
-                        imgUrl:require('@/assets/image/homePage/clothes2.jpg')
+                        imgUrl:require('@/assets/image/homePage/clothes2.jpg'),
+                        text:'国潮时代，自己做主'
                     },
                     {
-                        imgUrl:require('@/assets/image/homePage/clothes3.jpg')
+                        imgUrl:require('@/assets/image/homePage/clothes3.jpg'),
+                        text:'国潮时代，自己做主'
                     },
                     {
-                        imgUrl:require('@/assets/image/homePage/clothes4.jpg')
+                        imgUrl:require('@/assets/image/homePage/clothes4.jpg'),
+                        text:'国潮时代，自己做主'
                     },
                     {
-                        imgUrl:require('@/assets/image/homePage/clothes5.jpg')
+                        imgUrl:require('@/assets/image/homePage/clothes5.jpg'),
+                        text:'国潮时代，自己做主'
                     },
                 ]
             }
@@ -100,11 +104,15 @@
             .wrapSwiper{
                 margin-top: 80px;
                 .slideItem{
+                    position: relative;
                     .wrapText{
                         position: absolute;
+                        top: 15vw;
+                        right: 10vw;
                         color: red;
                         font-size: 50px;
                         z-index: 101;
+                        transition: all 1s ease-in;
                     }
                     img{
                         width: 100%;

@@ -30,6 +30,11 @@ export default new Router({
             name:'aboutUs',
             component: () => import('@/view/AboutUs/index')
         },
+        {
+            path:'/productDetail',
+            name:'productDetail',
+            component: () => import('@/view/ProductDetail/index')
+        },
         // {
             //添加路由
             // path:'',

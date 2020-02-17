@@ -39,13 +39,17 @@
                         tagLink:'/productCollection'
                     },
                     {
-                        tagName:"购买须知",
+                        tagName:"购物须知",
                         tagLink:'/shopNotice'
                     },
                     {
                         tagName:"关于我们",
                         tagLink:'/aboutUs'
                     },
+                    {
+                        tagName:'个人中心',
+                        tagLink:'/login'
+                    }
                 ]
             }
         },

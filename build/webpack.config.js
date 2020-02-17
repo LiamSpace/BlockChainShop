@@ -48,7 +48,7 @@ module.exports = {
                 use:[
                     {   loader: currentMode ? 'vue-style-loader': MiniCssExtractPlugin.loader,
                         options:{
-                            publicPath:"../dist/css/",
+                            publicPath:"../dist/",
                             hmr:currentMode
                         }
                     },
@@ -66,7 +66,7 @@ module.exports = {
                 use:[
                     {loader:currentMode?'vue-style-loader':MiniCssExtractPlugin.loader,
                     options:{
-                        publicPath:"../dist/css/",
+                        publicPath:"../dist/",
                         hmr:currentMode
                     }
                 },'css-loader',{
@@ -112,26 +112,13 @@ module.exports = {
                                         name: 'media/[name].[hash:8].[ext]',
                                     },
                                 },
+                            esModule: false
                         },
 
                     }
                 ],
-                include:[path.resolve(__dirname,"../src/assets/")],
                 exclude:/node_modules/
             },
-            // {
-            //     test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/, //媒体文件
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name: 'media/[name].[hash:8].[ext]',
-            //             },
-            //         }
-            //     ],
-            //     include:[path.resolve(__dirname,"../src/assets/")],
-            //     exclude:/node_modules/
-            // },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i, // 字体
                 use: [

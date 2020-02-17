@@ -55,7 +55,7 @@
     }
 
     .wrapContent{
-
+        width: 100%;
     }
 }
 </style>

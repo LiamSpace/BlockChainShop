@@ -3,7 +3,7 @@
         <div class="blockTitle">
             <p>品牌理念</p>
         </div>
-        <div class="brandIdeaIntro">
+        <div class="brandIdeaIntro" :style="{background: 'url('+ bgImg+')'}">
             <div class="bigFont">
                 <h1>
                     <i>中国精神</i>
@@ -28,7 +28,7 @@
         name: "brandIdea",
         data() {
             return{
-
+                bgImg:require('@/assets/image/homePage/brandBg.jpg')
             }
         },
         mounted() {
@@ -76,7 +76,7 @@
         width: 0;
         height: 40vw;
         left: 0;
-        background: url("../../../assets/image/homePage/brandBg.jpg")  no-repeat;
+        /*background: url("../../../assets/image/homePage/brandBg.jpg")  no-repeat;*/
         background-size: cover;
         background-position: 50% 85%;
         transition: all .5s linear;

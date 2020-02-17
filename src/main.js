@@ -6,7 +6,10 @@ import './permission' //设置权限
 import './styles/index.scss'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
-Vue.use(VueAwesomeSwiper)
+
+
+Vue.config.productionTip = false; //控制台信息
+Vue.use(VueAwesomeSwiper);
 
 new Vue({
     store,

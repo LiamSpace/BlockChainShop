@@ -137,11 +137,9 @@
 
 <style lang="scss" scoped>
 .wrapLogin{
-    position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 75vh;
     background: #ededed;
-    z-index: 102;
     input, button {
         border: none;
         outline: none;
