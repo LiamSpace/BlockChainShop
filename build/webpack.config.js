@@ -13,7 +13,7 @@ const currentMode =  process.argv.indexOf('--mode=production') === -1; //1 为 �
 module.exports = {
     entry:[
          //进行新api的转换 => @babel/polyfill
-        "@babel/polyfill",path.resolve(__dirname,'../src/main.js')
+        "@babel/polyfill",path.resolve(__dirname,'../src/main.js'),
     ],
     output:{
         filename:'js/[name].[hash:8].js',
@@ -48,7 +48,7 @@ module.exports = {
                 use:[
                     {   loader: currentMode ? 'vue-style-loader': MiniCssExtractPlugin.loader,
                         options:{
-                            publicPath:"../dist/",
+                            publicPath:'../',
                             hmr:currentMode
                         }
                     },
@@ -66,7 +66,7 @@ module.exports = {
                 use:[
                     {loader:currentMode?'vue-style-loader':MiniCssExtractPlugin.loader,
                     options:{
-                        publicPath:"../dist/",
+                        publicPath:'../',
                         hmr:currentMode
                     }
                 },'css-loader',{
@@ -177,7 +177,7 @@ module.exports = {
         new vueLoaderPlugin(),
         new MiniCssExtractPlugin({
             filename: currentMode? '[name].css':'[name].[hash].css',
-            chunkFilename:currentMode ? '[id].css':'[id].[hash].css'
+            chunkFilename:currentMode ? 'css/[id].css':'css/[id].[hash].css'
         }),
         //单线程变多线程并行运行,提升串行执行的速度
         new HappyPack({
