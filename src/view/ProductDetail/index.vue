@@ -1,8 +1,8 @@
 <template>
     <div class="wrapProductDetail">
         <div class="topHead">
-            <LeftImg :imageUrl="detailInfo.imgUrl"/>
-            <RightIntro/>
+            <LeftImg v-if="goodInfo" :imageUrl="goodInfo.productImg"/>
+            <RightIntro :productInfo="goodInfo"/>
         </div>
         <div class="footBottom">
             <MoreDate/>
@@ -14,6 +14,7 @@
     import LeftImg from './component/leftImg'
     import RightIntro from './component/rightIntro'
     import MoreDate from './component/moreDate'
+    import productInfo from  '@/model/goodDetail'
     export default {
         name: "index",
         components:{
@@ -23,9 +24,30 @@
         },
         data(){
             return{
-                detailInfo: {
-                    imgUrl:require('@/assets/image/homePage/show1.jpg')
-                }
+                goodId:'',
+                goodInfo:null
+            }
+        },
+        mounted() {
+            if (this.$route.query){
+                this.goodId = this.$route.query.productId;
+                this.getProductInfo();
+            }
+        },
+        methods:{
+            getProductInfo:function () {
+                let goodInfo = new productInfo();
+                let that = this;
+                goodInfo.getProductDetail({
+                    productId: that.goodId
+                }).then(res => {
+                    if (res.code === 200){
+                        that.goodInfo = res.goodDetail
+                    }
+                    console.log(res)
+                }).catch(err => {
+                    console.log(err)
+                })
             }
         }
     }

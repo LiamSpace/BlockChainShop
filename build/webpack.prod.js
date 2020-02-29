@@ -38,7 +38,8 @@ module.exports = WebpackMerge(WebpackBasicConfig,{
                         collapse_vars:true,
                         reduce_vars:true
                     }
-                }
+                },
+                sourceMap:false
             }),
             new OptimizeCssAssetsPlugin({})
         ],

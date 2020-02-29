@@ -24,6 +24,8 @@
 </template>
 
 <script>
+    import handle_cookie from "@/utils/user_cookie.js";
+    import {mapState} from 'vuex'
     export default {
         name: "TopHeader",
         data(){
@@ -49,8 +51,45 @@
                     {
                         tagName:'个人中心',
                         tagLink:'/login'
-                    }
+                    },
                 ]
+            }
+        },
+        created(){
+            let cVal = handle_cookie.getInfo('useId')
+            this.menuArr.forEach((item,index) => {
+                if (cVal){
+                    if (item.tagLink === '/login'){
+                        item.tagLink = '/personCenter'
+                    }
+                } else {
+                    if (item.tagLink === '/personCenter'){
+                        item.tagLink = '/login'
+                        this.$router.push({
+                            path:'/login'
+                        })
+                    }
+                }
+            })
+        },
+        computed:{
+            ...mapState([
+                'isLogin'
+            ])
+        },
+        watch:{
+            isLogin(val){
+                this.menuArr.forEach((item,index) => {
+                    if (val) {
+                        if (item.tagLink === '/login'){
+                            item.tagLink = '/personCenter'
+                        }
+                    } else {
+                        if (item.tagLink === '/personCenter'){
+                            item.tagLink = '/login'
+                        }
+                    }
+                })
             }
         },
         mounted(){

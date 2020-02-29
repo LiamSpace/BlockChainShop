@@ -8,68 +8,12 @@
                 团队成员
             </div>
             <div class="wrapContentItem">
-                <div class="wrapPersonImg">
+                <div class="wrapPersonImg" v-for="(item,index) in teamMember" :key="index">
                     <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person1.jpg" alt="">
+                        <img :src="item.personImg" alt="">
                     </div>
                     <div class="personDesc">
-                        <p>Bertrand</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person2.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>Martin</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person4.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>Eve  Rémillard-Larose</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person5.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>Jack</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person6.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>liam</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person7.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>rose</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person10.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>mark</p>
-                    </div>
-                </div>
-                <div class="wrapPersonImg">
-                    <div class="personImg">
-                        <img src="@/assets/image/aboutUS/person11.jpg" alt="">
-                    </div>
-                    <div class="personDesc">
-                        <p>Johan</p>
+                        <p>{{item.personName}}</p>
                     </div>
                 </div>
             </div>
@@ -99,13 +43,27 @@
 </template>
 
 <script>
+    import members from '@/model/teamMember'
     export default {
         name: "index",
         data(){
             return{
                 titleBg:require('@/assets/image/homePage/clothes1.jpg'),
-                earthImg:require('@/assets/image/aboutUS/earth.gif')
+                earthImg:require('@/assets/image/aboutUS/earth.gif'),
+                teamMember:[]
             }
+        },
+        mounted(){
+            let team = new members();
+            let that = this;
+            team.getMember({}).then(res => {
+                console.log(res)
+                if (res.code === 200){
+                    that.teamMember = res.pArr
+                }
+            }).catch(err => {
+                console.log(err)
+            });
         }
     }
 </script>

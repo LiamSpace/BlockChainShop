@@ -5,24 +5,37 @@
             <router-view></router-view>
         </div>
         <BottomFooter/>
+        <loadding v-if="loaddingState"/>
     </div>
 </template>
 
 <script>
     import TopHeader from '@/view/Common/TopHeader'
     import BottomFooter from '@/view/Common/BottomFooter'
+    import loadding from 'components/loading'
+    import {mapState} from 'vuex'
     export default {
         components:{
             TopHeader,
-            BottomFooter
+            BottomFooter,
+            loadding
         },
         data(){
             return{
                 topDis: 0,
             }
         },
+        created(){
+            $('#loading').fadeOut();
+            $('html').css({'overflow-y': 'auto'});
+        },
         mounted(){
             window.addEventListener('scroll',this.handleScorll,true)
+        },
+        computed:{
+            ...mapState([
+                'loaddingState'
+            ])
         },
         methods:{
             handleScorll(){

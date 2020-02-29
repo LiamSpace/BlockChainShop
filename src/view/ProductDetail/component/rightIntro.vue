@@ -2,23 +2,23 @@
     <div class="wrapRightIntro">
         <div class="innerRightIntro">
             <div class="clothTitle">
-                <h1>Loic Nottet au Pleyel </h1>
+                <h1>{{productInfo ? productInfo.productName : ''}}</h1>
             </div>
             <div class="openDate detailItem">
                 <div class="label">Date /</div>
-                <div class="dateTime detailInfo">{{goodsArr.openTime}}</div>
+                <div class="dateTime detailInfo">{{productInfo ? productInfo.openDate : ''}}</div>
             </div>
             <div class="place detailItem">
                 <div class="label">Place /</div>
-                <div class="wherePlace detailInfo">{{goodsArr.openPlace}}</div>
+                <div class="wherePlace detailInfo">{{productInfo ? productInfo.openAddress :''}}</div>
             </div>
             <div class="price detailItem">
                 <div class="label">Price /</div>
-                <div class="muchPrice detailInfo">{{goodsArr.openPrice}}</div>
+                <div class="muchPrice detailInfo">{{productInfo ? productInfo.openPrice : ''}}</div>
             </div>
             <div class="size detailItem">
                 <div class="label">Size /</div>
-                <div class="muchSize detailInfo">{{goodsArr.openSize}}</div>
+                <div class="muchSize detailInfo">{{productInfo ? productInfo.productSize: ''}}</div>
             </div>
             <!--<div class="buy detailItem">-->
                 <!--<div class="label">Buy /</div>-->
@@ -31,14 +31,11 @@
 <script>
     export default {
         name: "rightIntro",
+        props:{
+            'productInfo': Object
+        },
         data(){
             return {
-                goodsArr:{
-                    openTime:'2020-05-02 09:00~12:00',
-                    openPlace:'四川成都；北京朝阳；',
-                    openPrice:'$12000.00',
-                    openSize:'S \\ M \\ L \\ XL'
-                }
             }
         }
     }

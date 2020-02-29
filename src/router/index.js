@@ -35,6 +35,11 @@ export default new Router({
             name:'productDetail',
             component: () => import('@/view/ProductDetail/index')
         },
+        {
+            path:'/personCenter',
+            name:'personCenter',
+            component: () => import('@/view/PersonCenter/index')
+        }
         // {
             //添加路由
             // path:'',

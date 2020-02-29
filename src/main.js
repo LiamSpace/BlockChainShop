@@ -5,11 +5,18 @@ import router from './router'
 import './permission' //设置权限
 import './styles/index.scss'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import vueLazy from 'vue-lazyload'
 
 
 
 Vue.config.productionTip = false; //控制台信息
 Vue.use(VueAwesomeSwiper);
+Vue.use(vueLazy, {
+    preLoad: 1.3,
+    // error: 'dist/error.png',
+    // loading: 'dist/loading.gif',
+    attempt: 1
+});
 
 new Vue({
     store,

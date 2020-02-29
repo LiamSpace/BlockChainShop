@@ -16,14 +16,14 @@
                 <div class="wrapFillContent">
                     <label>
                         <span>邮箱</span>
-                        <input type="email" id="email"/>
+                        <input type="email" id="email" v-model="loginEmail"/>
                     </label>
                     <label>
                         <span>密码</span>
-                        <input type="password" id="password"/>
+                        <input type="password" id="password" v-model="loginPassword"/>
                     </label>
                     <!--<p class="forgot-pass"></p>-->
-                    <button type="button" class="submit" id="submit">登 录</button>
+                    <button type="button" class="submit" id="submit" @click="loginBtn">登 录</button>
                     <!--<button type="button" class="fb-btn">使用 <span>facebook</span> 帐号登录</button>-->
                     <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
                 </div>
@@ -48,17 +48,18 @@
                     <div class="wrapFillContent">
                         <label>
                             <span>用户名</span>
-                            <input type="text" id="userName"/>
+                            <input type="text" v-model="registeUserName" id="userName" @blur="goCheckUser"/>
+                            <span class="userNameWarning" v-if="userTag">当前用户名已被占用</span>
                         </label>
                         <label>
                             <span>邮箱</span>
-                            <input type="email" id="registeEmail"/>
+                            <input type="email" v-model="registeUserEmail" id="registeEmail"/>
                         </label>
                         <label>
                             <span>密码</span>
-                            <input type="password" id="registePassword"/>
+                            <input type="password" v-model="registePassword"  id="registePassword"/>
                         </label>
-                        <button type="button" class="submit" id="submitButton">注 册</button>
+                        <button type="button" class="submit" id="submitButton" @click="goToRegiste">注 册</button>
                     </div>
                 </div>
             </div>
@@ -68,14 +69,30 @@
 
 <script>
     import anime from "animejs";
+    import RegisteUser from '@/model/registeUser'
+    import checkUserInfo from '@/model/checkUserName'
+    import Login from '@/model/login'
     export default {
         name: "index",
         data() {
             return{
-                current:null
+                current:null,
+                registeUserName:null,
+                registeUserEmail:null,
+                registePassword:null,
+                userTag:false, //用户名占用
+                loginEmail:null,
+                loginPassword:null,
             }
         },
         mounted() {
+            // let test1 = new Test1()
+            // test1.getInfo().then(res => {
+            //     console.log(res)
+            // }).catch(err => error(err) )
+
+
+
             document.querySelector('.img__btn').addEventListener('click',function () {
                 $('.dowebok').toggleClass('s--signup')
             });
@@ -130,7 +147,84 @@
             });
         },
         methods:{
+            //检查用户姓名
+            goCheckUser:function(){
+                let checkUserVal = new checkUserInfo();
+                let that = this;
+                if (that.registeUserName) {
+                    checkUserVal.GocheckUserInfo({
+                        userName:that.registeUserName,
+                    }).then(res => {
+                        if (res.code == 200){
+                            that.userTag = false;
+                        } else{
+                            that.userTag = true;
+                        }
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
+            },
+            //注册
+            goToRegiste:function () {
+                let registeUserInfo = new RegisteUser();
+                let that = this;
+                if (that.registeUserName && that.registeUserEmail && that.registePassword) {
+                    if (!that.userTag) {
+                        registeUserInfo.goRegiste({
+                            email:that.registeUserEmail,
+                            userName:that.registeUserName,
+                            password:that.registePassword
+                        }).then(res => {
+                            if (res.code == 200){
+                                //戳登陆接口 进行自动登陆
+                                that.loginMethod(that.registeUserName,that.registeUserEmail,that.registePassword);
+                                console.log(res);
+                                that.registeUserName = null;
+                                that.registeUserEmail = null;
+                                that.registePassword = null;
+                            }
 
+                        }).catch(err => console.log(err));
+                    }
+                }
+            },
+
+            //登陆按钮
+            loginBtn:function(){
+              if (this.loginPassword && this.loginEmail){
+                  this.loginMethod('',this.loginEmail,this.loginPassword);
+                  this.loginEmail = null;
+                  this.loginPassword = null;
+              }
+
+            },
+
+            //登陆
+            loginMethod:function (name,email,passTag) {
+                let wrapLogin = new Login();
+                let that = this;
+                if (name || (email && passTag)){
+                    wrapLogin.getLoginInfo({
+                        email:email,
+                        userName:name,
+                        password:passTag
+                    }).then(res => {
+                        if (res.code == 200){
+                            that.$store.commit('isLoginMethod');
+                            //登陆成功
+                            that.$router.push({
+                                name:'personCenter',
+                                query:{
+                                    userId:res.user[0].userId
+                                }
+                            });
+                        }
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
+            }
         }
     }
 </script>
@@ -207,6 +301,7 @@
             .wrapFillContent{
                 position: absolute;
                 margin-top: 3.8rem;
+
             }
         }
         .sub-cont {
@@ -370,6 +465,10 @@
         font-size: .8rem;
         color: #c2c2c5;
         text-transform: uppercase;
+        &.userNameWarning{
+            color: red;
+            line-height: 2rem;
+        }
     }
 
     input {
@@ -383,6 +482,7 @@
     }
 
     .forgot-pass {
+        display: none;
         margin-top: 2.2rem;
         text-align: center;
         font-size: .6rem;
