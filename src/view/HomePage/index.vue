@@ -5,7 +5,13 @@
             <swiper-slide v-for="(item, index) in swiperSlides" :key="index" class="slideItem">
                 <img :src="item.imgUrl" alt="">
                 <div class="wrapText">
-                    {{item.text}}
+
+                    <div class="mask">
+
+                    </div>
+                    <div class="fontShow">
+                        {{item.text}}
+                    </div>
                 </div>
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
@@ -25,18 +31,14 @@
 
 <script>
     import { swiper , swiperSlide } from 'vue-awesome-swiper'
-    import FashionIntro from  './component/fashionShow'
-    import ClassifyProduct from './component/classifyProduct'
-    import BrandIdea from './component/brandIdea'
-    import Partner from './component/partner'
     export default {
         components:{
             swiper,
             swiperSlide,
-            FashionIntro,
-            ClassifyProduct,
-            BrandIdea,
-            Partner,
+            "FashionIntro" : () => import('./component/fashionShow'),
+            "ClassifyProduct" : () => import('./component/classifyProduct'),
+            "BrandIdea" : () => import('./component/brandIdea'),
+            "Partner" : () => import('./component/partner')
         },
         data(){
             return{
@@ -54,7 +56,7 @@
                     },
                     {
                         imgUrl:require('@/assets/image/homePage/clothes2.jpg'),
-                        text:'国潮时代，自己做主'
+                        text:'自己做主，潮流开道'
                     },
                     {
                         imgUrl:require('@/assets/image/homePage/clothes3.jpg'),
@@ -107,12 +109,36 @@
                     position: relative;
                     .wrapText{
                         position: absolute;
-                        top: 15vw;
-                        right: 10vw;
-                        color: red;
-                        font-size: 50px;
-                        z-index: 101;
-                        transition: all 1s ease-in;
+                        width: 50%;
+                        height: 100%;
+                        line-height: 8rem;
+                        margin: auto;
+                        top: 0;
+                        right: 0;
+                        font-size: 3rem;
+                        background: rgba(255, 255, 255, .3);
+                        box-shadow: 3px 3px 6px 3px rgba(0, 0, 0, .3);
+                        overflow: hidden;
+                        .mask{
+                            position: absolute;
+                            width: 100%;
+                            height: 5rem;
+                            top: 35%;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            background: lightseagreen;
+                            filter: blur(20px);
+                            z-index: 5;
+                        }
+                        .fontShow{
+                            position: absolute;
+                            width: 100%;
+                            height: 5rem;
+                            top: 35%;
+                            line-height: 5rem;
+                            z-index: 10;
+                        }
                     }
                     img{
                         width: 100%;

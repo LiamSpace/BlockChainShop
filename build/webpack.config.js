@@ -59,7 +59,9 @@ module.exports = {
                         options:{
                             plugin:[require('autoprefixer')]
                     }
-                }] //执行顺序，都是从右向左解析
+                }], //执行顺序，都是从右向左解析
+                include:[path.resolve(__dirname,"../src")],
+                exclude:/node_modules/
             },
             {
                 test:/\.s[ac]ss$/,
@@ -75,7 +77,9 @@ module.exports = {
                     options:{
                         plugin:[require('autoprefixer')]
                     }
-                },'sass-loader']
+                },'sass-loader'],
+                include:[path.resolve(__dirname,"../src")],
+                exclude:/node_modules/
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/i, //图片文件
@@ -134,7 +138,9 @@ module.exports = {
                       }
                     }
                   }
-                ]
+                ],
+                include:[path.resolve(__dirname,"../src/assets/")],
+                exclude:/node_modules/
             },
             // {
             //     test:/\.js$/,

@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV;
 if (env === 'development') {
   baseUrl = "api"
 } else if (env === 'production') {
-  baseUrl = ``
+  baseUrl = `http://47.113.97.247:3300/api`
 } else if (env === 'test') {
   baseUrl = ``
 }

@@ -8,14 +8,13 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import vueLazy from 'vue-lazyload'
 
 
-
 Vue.config.productionTip = false; //控制台信息
 Vue.use(VueAwesomeSwiper);
 Vue.use(vueLazy, {
-    preLoad: 1.3,
-    // error: 'dist/error.png',
-    // loading: 'dist/loading.gif',
-    attempt: 1
+    preLoad: .5,
+    error: require('@/assets/image/imgError.png'),
+    loading: require('@/assets/image/imgLoadding.gif'),
+    attempt: 2
 });
 
 new Vue({

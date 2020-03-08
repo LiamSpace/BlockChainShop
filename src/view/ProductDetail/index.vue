@@ -11,16 +11,13 @@
 </template>
 
 <script>
-    import LeftImg from './component/leftImg'
-    import RightIntro from './component/rightIntro'
-    import MoreDate from './component/moreDate'
     import productInfo from  '@/model/goodDetail'
     export default {
         name: "index",
         components:{
-            LeftImg,
-            RightIntro,
-            MoreDate
+            "LeftImg": () => import('./component/LeftImg'),
+            "RightIntro": () => import('./component/rightIntro'),
+            "MoreDate": () => import('./component/moreDate')
         },
         data(){
             return{

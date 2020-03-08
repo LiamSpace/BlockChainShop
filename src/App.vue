@@ -25,11 +25,14 @@
                 topDis: 0,
             }
         },
-        created(){
-            $('#loading').fadeOut();
-            $('html').css({'overflow-y': 'auto'});
-        },
+        created(){},
         mounted(){
+            document.onreadystatechange = function(){
+                if (document.readyState == "complete") {
+                    $('#loading').fadeOut();
+                    $('html').css({'overflow-y': 'auto'});
+                }
+            }
             window.addEventListener('scroll',this.handleScorll,true)
         },
         computed:{
@@ -56,7 +59,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #HomePage{
     width: 100%;
     .headTop{
@@ -70,5 +73,15 @@
     .wrapContent{
         width: 100%;
     }
+}
+img[lazy=loading]{
+    /*transform: scale(.5);*/
+    /*zoom:0.5;*/
+}
+img[lazy=loaded]{
+    zoom:0.5;
+    transition: all .5s ease-in;
+    /*transform: scale(.5);*/
+    /*zoom:1;*/
 }
 </style>

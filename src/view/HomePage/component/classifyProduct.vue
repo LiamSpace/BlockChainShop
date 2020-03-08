@@ -21,32 +21,32 @@
             return{
                 productArr:[
                     {
-                        maskImg:require('@/assets/image/homePage/imgH1.png'),
-                        hoverImg:require('@/assets/image/homePage/imgH2.png'),
+                        maskImg:require('@/assets/image/homePage/imgH1.jpg'),
+                        hoverImg:require('@/assets/image/homePage/imgH2.jpg'),
                         imgIntro:'衣服'
                     },
                     {
-                        maskImg:require('@/assets/image/homePage/imgH3.png'),
+                        maskImg:require('@/assets/image/homePage/imgH3.jpg'),
                         hoverImg:require('@/assets/image/homePage/imgH4.jpg'),
                         imgIntro:'裤子'
                     },
                     {
                         maskImg:require('@/assets/image/homePage/imgH5.jpg'),
-                        hoverImg:require('@/assets/image/homePage/imgH6.png'),
+                        hoverImg:require('@/assets/image/homePage/imgH6.jpg'),
                         imgIntro:'鞋子'
                     },
                     {
                         maskImg:require('@/assets/image/homePage/imgH7.jpg'),
-                        hoverImg:require('@/assets/image/homePage/imgH8.png'),
+                        hoverImg:require('@/assets/image/homePage/imgH8.jpg'),
                         imgIntro:'配件'
                     },
                     {
-                        maskImg:require('@/assets/image/homePage/imgH1.png'),
-                        hoverImg:require('@/assets/image/homePage/imgH2.png'),
+                        maskImg:require('@/assets/image/homePage/imgH1.jpg'),
+                        hoverImg:require('@/assets/image/homePage/imgH2.jpg'),
                         imgIntro:'袜子'
                     },
                     {
-                        maskImg:require('@/assets/image/homePage/imgH3.png'),
+                        maskImg:require('@/assets/image/homePage/imgH3.jpg'),
                         hoverImg:require('@/assets/image/homePage/imgH4.jpg'),
                         imgIntro:'帽子'
                     },

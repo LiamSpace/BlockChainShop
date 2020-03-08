@@ -12,6 +12,7 @@
                 <div class="wrapUserInfo" v-show="!chooseTag">
                     <p>用户名:<span>{{item.userName}}</span></p>
                     <p>邮箱: <span>{{item.email}}</span></p>
+                    <button @click="loginOut">登出</button>
                 </div>
                 <div class="wrapLookRecord" v-show="chooseTag">
                     <!--<p>324hahh</p>-->
@@ -71,6 +72,14 @@
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+            //登出
+            loginOut:function () {
+                handle_cookie.removeInfo('useId');
+                this.$router.push({
+                    path:'/login'
+                })
+                this.$store.commit('isLoginOutMethod')
             }
         }
     }
@@ -137,6 +146,16 @@
                         padding-left: 1rem;
                     }
                 }
+            }
+            button{
+                width: 10rem;
+                height: 4rem;
+                line-height: 4rem;
+                font-weight: 300;
+                font-size: 1.3rem;
+                /*margin-left: 2rem;*/
+                margin: 2rem 0 2rem 2rem;
+                background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
             }
         }
     }

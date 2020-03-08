@@ -10,7 +10,7 @@
             <div class="wrapContentItem">
                 <div class="wrapPersonImg" v-for="(item,index) in teamMember" :key="index">
                     <div class="personImg">
-                        <img :src="item.personImg" alt="">
+                        <img v-lazy="item.personImg" alt="">
                     </div>
                     <div class="personDesc">
                         <p>{{item.personName}}</p>
@@ -57,7 +57,6 @@
             let team = new members();
             let that = this;
             team.getMember({}).then(res => {
-                console.log(res)
                 if (res.code === 200){
                     that.teamMember = res.pArr
                 }

@@ -3,227 +3,63 @@
 
 
         <div class="waterFlowShow">
-            <!--@scrollReachBottom="getData"-->
-            <!--<vue-waterfall-easy :imgsArr="items" :imgWidth="420" :isRouterLink="true" :maxCols="4" @scrollReachBottom="loadMoreData">-->
-                <!--<div class="wrapAnimate" slot="waterfall-head">-->
-                    <!--height: 304px; width: 438px;transform: matrix(1, 0, 0, 1, -3, 131.5)-->
-                    <!--<div class="filterProduct">-->
-                        <!--<div class="selectTime">-->
-                            <!--<select name="">-->
-                                <!--<option  v-for="(item,index) in timeArr" :value="item" :key="index">{{item}}</option>-->
-                            <!--</select>-->
-                        <!--</div>-->
-                        <!--<div class="classify">-->
-                            <!--<select name="">-->
-                                <!--<option  v-for="(item,index) in classfiyArr" :value="item" :key="index">{{item}}</option>-->
-                            <!--</select>-->
-                        <!--</div>-->
-                        <!--<div class="brand">-->
-                            <!--<select name="">-->
-                                <!--<option  v-for="(item,index) in brandArr" :value="item" :key="index">{{item}}</option>-->
-                            <!--</select>-->
-                        <!--</div>-->
-
-                        <!--<div class="select dowebok">-->
-                            <!--<span class="placeholder">{{chooseTime}}</span>-->
-                            <!--<ul>-->
-                                <!--<li v-for="(item,index) in timeArr" :key="index" @click="chooseTimeMethod(item)">{{item}}</li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-
-                        <!--<div class="select dowebok">-->
-                            <!--<span class="placeholder">{{chooseClassfiy}}</span>-->
-                            <!--<ul>-->
-                                <!--<li v-for="(item,index) in classfiyArr" :key="index" @click="chooseClassfiyMethod(item)">{{item}}</li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-
-                        <!--<div class="select dowebok">-->
-                            <!--<span class="placeholder">{{chooseBrand}}</span>-->
-                            <!--<ul>-->
-                                <!--<li v-for="(item,index) in brandArr" :key="index" @click="chooseBrandMethod(item)">{{item}}</li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="imgInfo" slot-scope="props">-->
-                    <!--<p class="titleInfo">第{{props.index+1}}张图片</p>-->
-                    <!--<p class="introInfo">{{props.value.imgDesc}}</p>-->
-                <!--</div>-->
-                <!--瀑布流结束显示-->
-                <!--<div slot="waterfall-over">waterfall-over</div>-->
-            <!--</vue-waterfall-easy>-->
-
-
-
             <div class="wrapVideo">
                 <video loop="" muted="" playsinline="" autoplay="" preload="auto" src="../../../static/productAnimate.mp4"></video>
                 <img v-if="imgShow" src="@/assets/image/productCollection/shopAnimate.png" alt="">
             </div>
             <div class="filterProduct">
                 <div class="select dowebok">
-                    <span class="placeholder">{{chooseTime}}</span>
+                    <span class="placeholder">{{chooseTime ? chooseTime : '请选择时间'}}</span>
                     <ul>
                         <li v-for="(item,index) in timeArr" :key="index" @click="chooseTimeMethod(item)">{{item}}</li>
                     </ul>
                 </div>
 
                 <div class="select dowebok">
-                    <span class="placeholder">{{chooseClassfiy}}</span>
+                    <span class="placeholder">{{chooseClassfiy ? chooseClassfiy:'请选择种类'}}</span>
                     <ul>
                         <li v-for="(item,index) in classfiyArr" :key="index" @click="chooseClassfiyMethod(item)">{{item}}</li>
                     </ul>
                 </div>
 
                 <div class="select dowebok">
-                    <span class="placeholder">{{chooseBrand}}</span>
+                    <span class="placeholder">{{chooseBrand ? chooseBrand:'请选择品牌'}}</span>
                     <ul>
                         <li v-for="(item,index) in brandArr" :key="index" @click="chooseBrandMethod(item)">{{item}}</li>
                     </ul>
                 </div>
             </div>
-            <WaterFall :list="productList" @loadMoreData="moreDataMethod" @itemClick="goToItemDetail"/>
+            <WaterFall v-if="isFlag" :list="productList" @loadMoreData="moreDataMethod" @itemClick="goToItemDetail"/>
+            <div class="noData" v-if="!isFlag">
+                <img src="@/assets/image/write.gif" alt="">
+                <p>没有数据啦～</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-    import WaterFall from './component/waterFall'
     import GoodProductList from '@/model/goodList'
     export default {
         name: "index",
         components:{
-            WaterFall
+            "WaterFall": () => import('./component/waterFall')
         },
         data(){
             return{
                 imgShow:false, //ie浏览器显示图片,
-                items:[
-                    {
-                        src:require('@/assets/image/homePage/clothes1.jpg'),
-                        href:'/productDetail',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/clothes2.jpg'),
-                        href:'/shopNotice',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/clothes3.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/clothes4.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/clothes5.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/clothes10.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/imgH1.png'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/imgH2.png'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/imgH3.png'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/imgH4.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/homePage/imgH5.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/1.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/4.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/3.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/5.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/6.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/7.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/8.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/9.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/10.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                    {
-                        src:require('@/assets/image/productCollection/15.jpg'),
-                        href:'#',
-                        imgDesc:'nice good pic'
-                    },
-                ],
-                timeArr:[
-                    '2019-10-09',
-                    '2015-08-09'
-                ],
-                classfiyArr:[
-                    '鞋子',
-                    '衣服'
-                ],
-                brandArr:[
-                    'Nike',
-                    'Adidas'
-                ],
-                chooseTime:'请选择', //选择时间
-                chooseClassfiy:'请选择', //选择种类
-                chooseBrand:'请选择', //选择品牌
+                timeArr:['ALL'],
+                classfiyArr:['ALL'],
+                brandArr:['ALL'],
+                chooseTime:'', //选择时间
+                chooseClassfiy:'', //选择种类
+                chooseBrand:'', //选择品牌
                 productList:[],
                 listNum:8,
                 listPage:1,
-                isFlag: true
+                isFlag: true,
+                isFilterTag: true, //选择标志位
+
             }
         },
         mounted(){
@@ -234,10 +70,12 @@
                 this.imgShow = true;
             }
 
+            //获得筛选条件
+            this.getFilterInfo();
             //加载图片列表
             this.loadProductList(this.listPage,this.listNum);
 
-    $('.select').on('click', '.placeholder', function(e) {
+            $('.select').on('click', '.placeholder', function(e) {
                 var parent = $(this).closest('.select');
                 if (!parent.hasClass('is-open')) {
                     parent.addClass('is-open');
@@ -254,21 +92,108 @@
             $('body').on('click', function() {
                 $('.select.is-open').removeClass('is-open');
             });
+
+            let ot = $('.filterProduct').offset().top;
+            document.addEventListener('scroll',function () {
+
+                let st = document.body.scrollTop || document.documentElement.scrollTop;
+                if (st >= ot){
+                    $('.filterProduct').addClass('dataFixed')
+                } else {
+                    $('.filterProduct').removeClass('dataFixed')
+                }
+
+            })
+
+
         },
         methods:{
             //筛选条件
             chooseTimeMethod(target){
                 this.chooseTime = target;
+                if (target === 'ALL'){
+                    this.chooseTime = '';
+                }
+                this.isFilterTag = false;
                 console.log(this.chooseTime)
+                this.queryFindList()
             },
             chooseClassfiyMethod(target){
                 this.chooseClassfiy = target;
+                if (target === 'ALL'){
+                    this.chooseClassfiy = '';
+                }
+                this.isFilterTag = false;
                 console.log(this.chooseClassfiy)
+                this.queryFindList();
             },
             chooseBrandMethod(target){
                 this.chooseBrand = target;
+                if (target === 'ALL'){
+                    this.chooseBrand = '';
+                }
+                this.isFilterTag = false;
+                this.queryFindList();
                 console.log(this.chooseBrand)
             },
+
+            // 请求查询列表
+            queryFindList(){
+                    let that = this;
+                    let loadList = new GoodProductList();
+                    loadList.findListResult({
+                        filterTime: that.chooseTime,
+                        filterKind: that.chooseClassfiy,
+                        filterBrand: that.chooseBrand
+                    }).then(res => {
+                        if (res.code === 200){
+                            if (res.filterResults.length > 0){
+                                that.isFlag = true;
+                                that.productList = res.filterResults;
+                            } else {
+                                that.isFlag = false;
+                            }
+                        }
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
+
+            // 获取查询条件信息
+            getFilterInfo(){
+                let that = this;
+                let loadList = new GoodProductList();
+                loadList.getFilterCondition({}).then(res => {
+                    if (res.code === 200){
+                        let {openDate,productKind,productBrand} = res.filterArr;
+                        if (openDate.length > 0){
+                            let timeArr = []
+                            openDate.forEach((item,index) => {
+                                timeArr.push(item.openDate)
+                            })
+                            that.timeArr = that.timeArr.concat(timeArr);
+                        }
+                        if (productKind.length > 0){
+                            let classfiyArr = [];
+                            productKind.forEach((item,index) => {
+                                classfiyArr.push(item.productKind)
+                            })
+                            that.classfiyArr = that.classfiyArr.concat(classfiyArr)
+                        }
+                        if (productBrand.length > 0){
+                            let brandArr = []
+                            productBrand.forEach((item,index) => {
+                                brandArr.push(item.productBrand)
+                            })
+                            that.brandArr = that.brandArr.concat(brandArr);
+                        }
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
+
+
 
             //加载列表数据
             loadProductList:function(number,pageNum){
@@ -282,7 +207,7 @@
                         if (res.goodList.length > 0){
                             that.productList = that.productList.concat(res.goodList)
                         } else {
-                            that.isFlag = false
+                            that.isFlag = false;
                         }
 
                     }
@@ -294,12 +219,11 @@
 
             //加载更多数据
             moreDataMethod:function () {
-                if (this.isFlag){
+                if (this.isFlag && this.isFilterTag){
                     let currentVal = this.listPage;
                     currentVal++;
                     this.loadProductList(this.listNum,currentVal)
                 }
-
             },
             //进入到产品详情
             goToItemDetail:function (goodInfo) {
@@ -352,6 +276,20 @@
                         /*background: #1e1e1e;*/
                         display: flex;
                         justify-content: space-around;
+                        /*&[data-fixed="fixed"]{*/
+                            /*position: fixed;*/
+                            /*top:0;*/
+                            /*left: 0;*/
+                            /*margin: 0;*/
+                            /*z-index: 10000;*/
+                        /*}*/
+                        &.dataFixed{
+                            position: fixed;
+                            top:0;
+                            left: 0;
+                            margin: 0;
+                            z-index: 10000;
+                        }
                         .select {
                             position: relative;
                             display: block;
@@ -471,6 +409,16 @@
                         }
                     }
                 }
+            .noData{
+                /*position: absolute;*/
+                width: 10%;
+                margin: 4% auto 0;
+                text-align: center;
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
         }
     }
 
