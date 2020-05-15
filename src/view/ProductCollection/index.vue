@@ -62,6 +62,12 @@
 
             }
         },
+        created(){
+            if(this.$route.query){
+                this.chooseClassfiy = this.$route.query.data;
+                this.queryFindList();
+            }
+        },
         mounted(){
             //判断是否为IE浏览器
             if (navigator.userAgent.indexOf("MSIE") >= -1 && navigator.userAgent.indexOf("Trident") >= -1){

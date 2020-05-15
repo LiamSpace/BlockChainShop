@@ -5,7 +5,7 @@
             <RightIntro :productInfo="goodInfo"/>
         </div>
         <div class="footBottom">
-            <MoreDate/>
+            <MoreDate @toggleProductDetail="toggleDetail"/>
         </div>
     </div>
 </template>
@@ -45,6 +45,12 @@
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+            toggleDetail(targetId){
+                if (this.goodId){
+                    this.goodId = targetId;
+                    this.getProductInfo();
+                }
             }
         }
     }

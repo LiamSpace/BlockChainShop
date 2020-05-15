@@ -68,4 +68,23 @@
 ----------
 
 
+> **服务端**
+在下载好文件夹，cd到相应的server文件中，执行
+```javascript
+npm install
+```
+接下来启动服务，执行
+```javascript
+node server.js
+```
+
+若需进行二次开发服务端，推荐全局安装nodemon命令
+```javascript
+npm install -g nodemon
+```
+使用方法：nodemon server.js  可以避免每修改一次文件就重新启动一次，此命令可检测文件的改变，一旦改变就会重启服务，类似于webpack当中的热更新。
+
+----------
+
+
 > 待续还有优化...（生产环境打包文件位置可调整）

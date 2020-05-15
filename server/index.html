@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        (function(){
+            $.ajax({
+                type: 'get',
+                url: 'http://47.113.97.247/getFilterList',
+                dataType:"jsonp",/*加上datatype*/
+
+                jsonpCallback:"cb",
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(){
+                    console.log('error');
+                }
+            });
+
+            // $.ajax({
+            //     type: 'post',
+            //     url: 'http://localhost:3330/api/filterGood',
+            //     data:{
+            //         filterTime:'2020-03-22',
+            //         // filterKind:'衣服',
+            //         filterBrand:'Adidas'
+            //     },
+            //     success:function(data){
+            //         console.log(data);
+            //     },
+            //     error:function(){
+            //         console.log('error');
+            //     }
+            // });
+
+            return;
+            $.ajax({
+                type:'post',
+                url:'http://localhost:3330/api/products',
+                data:{
+                    // productList:[
+                    //     {
+                    //         productName:'加长袖短款拼接牛仔夹克',
+                    //         productDes:'适合在户外场合穿搭。',
+                    //         productImg:'http://47.113.97.247/images/productCollection/you1.jpg',
+                    //         openAddress:'上海浦东',
+                    //         openDate:'2020-03-01',
+                    //         openPrice:'215',
+                    //         productSize:'S/M/L',
+                    //         productKind:'衣服',
+                    //         productBrand:'优衣库'
+                    //     },
+                    //     {
+                    //         productName:'弹力运动长裤',
+                    //         productDes:'施有耐久防水加工，有助于适度抵御雨水侵袭。',
+                    //         productImg:'http://47.113.97.247/images/productCollection/you4.jpg',
+                    //         openAddress:'北京朝阳',
+                    //         openDate:'2020-03-22',
+                    //         openPrice:'728',
+                    //         productSize:'S/M/L/XL',
+                    //         productKind:'裤子',
+                    //         productBrand:'优衣库'
+                    //     },
+                    //     {
+                    //         productName:'BLOCKTECH连帽外套',
+                    //         productDes:'表面具有防水、防风性，内里较不易产生闷热感，具有舒爽的穿着感受',
+                    //         productImg:'http://47.113.97.247/images/productCollection/you2.jpg',
+                    //         openAddress:'四川成都',
+                    //         openDate:'2020-01-12',
+                    //         openPrice:'499',
+                    //         productSize:'M/L/XL',
+                    //         productKind:'衣服',
+                    //         productBrand:'优衣库'
+                    //     },
+                    //     {
+                    //         productName:'高级轻型羽绒背心',
+                    //         productDes:'对滚边布带的宽度进行改良，有助于提升活动性。',
+                    //         productImg:'http://47.113.97.247/images/productCollection/you3.jpg',
+                    //         openAddress:'重庆解放碑',
+                    //         openDate:'2020-05-01',
+                    //         openPrice:'299',
+                    //         productSize:'L/XL',
+                    //         productKind:'衣服',
+                    //         productBrand:'优衣库'
+                    //     },
+                    //
+                    //     {
+                    //         productName:'Air Jordan 1 High React',
+                    //         productDes:'男子运动鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike1.jpg',
+                    //         openAddress:'四川成都',
+                    //         openDate:'2020-02-29',
+                    //         openPrice:'1299',
+                    //         productSize:'40～49',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Air Jordan 1 HI FlyEase',
+                    //         productDes:'男子运动鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike2.jpg',
+                    //         openAddress:'重庆解放碑',
+                    //         openDate:'2020-02-29',
+                    //         openPrice:'1299',
+                    //         productSize:'36～44',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Air Jordan 1 Mid SE (GS)',
+                    //         productDes:'大童运动童鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike3.jpg',
+                    //         openAddress:'上海浦东；四川成都',
+                    //         openDate:'2020-01-15',
+                    //         openPrice:'799',
+                    //         productSize:'36～40',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Nike Air Zoom Pegasus 36 Shield',
+                    //         productDes:'男子跑步鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike4.jpg',
+                    //         openAddress:'四川成都',
+                    //         openDate:'2020-05-24',
+                    //         openPrice:'999',
+                    //         productSize:'40～43',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Nike Zoom Winflo 6',
+                    //         productDes:'男子休闲鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike5.jpg',
+                    //         openAddress:'重庆解放碑',
+                    //         openDate:'2020-04-03',
+                    //         openPrice:'749',
+                    //         productSize:'40～46',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Nike Air Zoom Pegasus 36 Cody',
+                    //         productDes:'男子运动鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike6.jpg',
+                    //         openAddress:'四川成都',
+                    //         openDate:'2020-02-30',
+                    //         openPrice:'399',
+                    //         productSize:'40～48',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Air Jordan 1 Mid SE (GS)',
+                    //         productDes:'大童运动童鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike7.jpg',
+                    //         openAddress:'上海浦东；四川成都',
+                    //         openDate:'2020-01-15',
+                    //         openPrice:'1799',
+                    //         productSize:'36～40',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Nike Air Zoom Pegasus 36 Shield',
+                    //         productDes:'男子跑步鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike8.jpg',
+                    //         openAddress:'四川成都',
+                    //         openDate:'2020-05-24',
+                    //         openPrice:'1999',
+                    //         productSize:'40～43',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Air Jordan 1 Mid SE (GS)',
+                    //         productDes:'大童运动童鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike9.jpg',
+                    //         openAddress:'上海浦东；四川成都',
+                    //         openDate:'2020-01-15',
+                    //         openPrice:'1299',
+                    //         productSize:'36～40',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Nike Air Zoom Pegasus 36 Shield',
+                    //         productDes:'男子运动鞋',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nike10.jpg',
+                    //         openAddress:'四川成都',
+                    //         openDate:'2020-05-24',
+                    //         openPrice:'999',
+                    //         productSize:'40～43',
+                    //         productKind:'鞋子',
+                    //         productBrand:'Nike'
+                    //     },
+                    //     {
+                    //         productName:'Club Short M 运动短裤',
+                    //         productDes:'男子 羽毛球',
+                    //         productImg:'http://47.113.97.247/images/productCollection/adidas1.jpg',
+                    //         openAddress:'重庆解放碑；四川成都',
+                    //         openDate:'2020-03-22',
+                    //         openPrice:'269',
+                    //         productSize:'M',
+                    //         productKind:'裤子',
+                    //         productBrand:'Adidas'
+                    //     },
+                    //     {
+                    //         productName:'AI PNT ENT 裤子',
+                    //         productDes:'男子',
+                    //         productImg:'http://47.113.97.247/images/productCollection/adidas2.jpg',
+                    //         openAddress:'四川成都；',
+                    //         openDate:'2020-04-22',
+                    //         openPrice:'239',
+                    //         productSize:'S/M/L',
+                    //         productKind:'裤子',
+                    //         productBrand:'Adidas'
+                    //     },
+                    //     {
+                    //         productName:'O2 PNT KN TAPE 裤子',
+                    //         productDes:'男子',
+                    //         productImg:'http://47.113.97.247/images/productCollection/adidas3.jpg',
+                    //         openAddress:'四川成都；北京朝阳',
+                    //         openDate:'2020-03-23',
+                    //         openPrice:'299',
+                    //         productSize:'M/L',
+                    //         productKind:'裤子',
+                    //         productBrand:'Adidas'
+                    //     },
+                    //     {
+                    //         productName:'MYSHELTER PARKA 户外运动连帽夹克外套',
+                    //         productDes:'男子 户外',
+                    //         productImg:'http://47.113.97.247/images/productCollection/adidas4.jpg',
+                    //         openAddress:'重庆解放碑;',
+                    //         openDate:'2020-06-02',
+                    //         openPrice:'1199',
+                    //         productSize:'S/M/L',
+                    //         productKind:'衣服',
+                    //         productBrand:'Adidas'
+                    //     },
+                    //     {
+                    //         productName:'CNY JKT JC 夹克外套',
+                    //         productDes:'男子',
+                    //         productImg:'http://47.113.97.247/images/productCollection/adidas5.jpg',
+                    //         openAddress:'四川成都；',
+                    //         openDate:'2020-01-23',
+                    //         openPrice:'779',
+                    //         productSize:'S/M/L',
+                    //         productKind:'衣服',
+                    //         productBrand:'Adidas'
+                    //     },
+                    //     {
+                    //         productName:'余文乐同款男款四合一多功能户外中长款羽绒服',
+                    //         productDes:'Men\'s  羽绒服/棉服/马甲',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nb2.jpeg',
+                    //         openAddress:'北京朝阳；',
+                    //         openDate:'2020-05-06',
+                    //         openPrice:'2899',
+                    //         productSize:'M/L/XL',
+                    //         productKind:'衣服',
+                    //         productBrand:'New Balance'
+                    //     },
+                    //     {
+                    //         productName:'男女同款正反两穿连帽羽绒服',
+                    //         productDes:'Men\'s  羽绒服/棉服/马甲',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nb1.jpeg',
+                    //         openAddress:'重庆解放碑；',
+                    //         openDate:'2020-02-06',
+                    //         openPrice:'1699',
+                    //         productSize:'M/L/XL',
+                    //         productKind:'衣服',
+                    //         productBrand:'New Balance'
+                    //     },
+                    //     {
+                    //         productName:'O2 PNT KN TAPE 裤子',
+                    //         productDes:'男子',
+                    //         productImg:'http://47.113.97.247/images/productCollection/nb3.jpeg',
+                    //         openAddress:'四川成都；北京朝阳',
+                    //         openDate:'2020-03-23',
+                    //         openPrice:'499',
+                    //         productSize:'M/L',
+                    //         productKind:'裤子',
+                    //         productBrand:'New Balance'
+                    //     },
+                    // ]
+                },
+
+            //  url:'https://47.102.124.189/home/es/af0d-ikvenfu3179349.jpg',
+                // type:'get',
+                // url:'http://localhost:3330/api/user',
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(){
+                    console.log('error');
+                }
+            })
+        })();
+    </script>
+</body>
+</html>

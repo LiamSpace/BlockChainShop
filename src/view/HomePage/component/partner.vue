@@ -42,47 +42,47 @@
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/behance.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/behance.gif'),
+                        animateUrl:'http://tvax3.sinaimg.cn/large/7e84681dgy1gdonf7fdueg20m80go4ej.gif',
                         logoName:'aliyun',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/Facebook.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/facebook.gif'),
+                        animateUrl:'http://tva3.sinaimg.cn/large/7e84681dgy1gdonf82fzng20m80go4qp.gif',
                         logoName:'baidu',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/gmail.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/gmail.gif'),
+                        animateUrl:'http://tvax1.sinaimg.cn/large/7e84681dgy1gdonf8ghlbg20m80goav3.gif',
                         logoName:'aliyun',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/google.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/google.gif'),
+                        animateUrl:'http://tva3.sinaimg.cn/large/7e84681dgy1gdonf8qt7qg20m80gogtq.gif',
                         logoName:'baidu',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/Instagram.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/instagram.gif'),
+                        animateUrl:'http://tvax3.sinaimg.cn/large/7e84681dgy1gdonf90sxtg20m80gon4l.gif',
                         logoName:'aliyun',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/linkin.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/linkedin.gif'),
+                        animateUrl:'http://tva3.sinaimg.cn/large/7e84681dgy1gdonf9d669g20m80gotuy.gif',
                         logoName:'aliyun',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/telegram.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/telegram.gif'),
+                        animateUrl:'http://tvax4.sinaimg.cn/large/7e84681dgy1gdonf9nrd0g20m80go487.gif',
                         logoName:'baidu',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/twitter.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/twitter.gif'),
+                        animateUrl:'http://tva4.sinaimg.cn/large/7e84681dgy1gdonf9xq7jg20m80gojwz.gif',
                         logoName:'aliyun',
                     },
                     {
                         logoUrl:require('@/assets/image/homePage/brandLogo/youtube.png'),
-                        animateUrl:require('@/assets/image/homePage/brandLogo/youtube.gif'),
+                        animateUrl:'http://tva1.sinaimg.cn/large/7e84681dgy1gdonfaeelsg20m80go1kx.gif',
                         logoName:'baidu',
                     },
 

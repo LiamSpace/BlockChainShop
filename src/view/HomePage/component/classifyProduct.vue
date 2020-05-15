@@ -2,7 +2,7 @@
     <div class="wrapClassify">
         <p class="blockTitle">商品分类</p>
         <div class="wrapClassifyItem">
-            <div class="productItem" v-for="(item,index) in productArr" :key="index">
+            <div class="productItem" v-for="(item,index) in productArr" :key="index" @click="goProductionKind(item.imgIntro)">
                 <a href="#">
                     <div class="hoverImg" :style="{background: 'url('+item.maskImg+')',backgroundSize:'cover',backgroundPosition: '50% 50%'}">
                         <span :style="{background: 'url('+item.hoverImg+')',backgroundSize:'cover',backgroundPosition: '50% 50%'}"></span>
@@ -94,6 +94,16 @@
                 }
             },true)
 
+        },
+        methods:{
+            goProductionKind(target){
+                this.$router.push({
+                    path:'/productCollection',
+                    query:{
+                        data:target
+                    }
+                })
+            }
         }
     }
 </script>

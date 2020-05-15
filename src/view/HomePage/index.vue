@@ -137,6 +137,9 @@
                             height: 5rem;
                             top: 35%;
                             line-height: 5rem;
+                            font-weight: 600;
+                            letter-spacing: 5px;
+                            color: #FFF;
                             z-index: 10;
                         }
                     }
